@@ -19,14 +19,9 @@ public class KakaoMapClient {
     @Value("${kakao.api.key}")
     private String kakaoApiKey;
 
-    public String searchPlaceBy(final String placeName) {
-        final String url = KAKAO_MAP_API_URL + "/address.json" + "?query=" + placeName;
-        return getData(url).getPlaceName();
-    }
-
-    public String searchPlaceBy(final double longitude, final double latitude) {
-        final String url = KAKAO_MAP_API_URL + "/category.json" + "?x=" + longitude + "&y=" + latitude + "&category_group_code=SW8";
-        return getData(url).getPlaceName();
+    public KakaoApiResponse searchPlaceBy(final double x, final double y, final String keyword, final String code) {
+        final String url = KAKAO_MAP_API_URL + "/keyword.json" + "?query=" + keyword + "&x=" + x + "&y=" + y + "&category_group_code=" + code + "&radius=700";
+        return getData(url);
     }
 
     private KakaoApiResponse getData(final String url) {
