@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: 마지막 커밋 내역으로 checkout 한다
         uses: actions/checkout@v4
+        with:
+          ref: github.ref
 
       - name: EC2 환경에서 배포를 진행한다
         env:
